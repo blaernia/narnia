@@ -34,10 +34,18 @@ namespace Narnia
             
         }
 
-        public void OpenWardrobe()
+        public bool OpenWardrobe()
         {
-            Output.Log(string.Format("Kid {0}: opens wardrobe.", id));
-            Wardrobe.OpenDoor(this);
+            bool canOpen = Wardrobe.OpenDoor(this);
+            if (canOpen)
+            {
+                Output.Log(string.Format("Kid {0}: opens wardrobe.", id));
+            } else
+            {
+                Output.Log(string.Format("Kid {0}: can\'t open wardrobe. It's locked.", id));
+            }
+            
+            return canOpen;
         }
 
         public void CloseWardrobe()
@@ -48,15 +56,25 @@ namespace Narnia
 
         public void EnterWardrobe()
         {
-            Output.Log(string.Format("Kid {0}: enters wardrobe.", id));
-            Wardrobe.Enter(this);
+            if (Wardrobe.IsDoorOpen()) { 
+                Output.Log(string.Format("Kid {0}: enters wardrobe.", id));
+                Wardrobe.Enter(this);
+            } else
+            {
+                Output.Log(string.Format("Kid {0}: Can\'t enter wardrobe. It\'s closed.", id));
+            }
         }
 
         public void LeaveWardrobe()
         {
-
-           Output.Log(string.Format("Kid {0}: leaves wardrobe.", id));
-           Wardrobe.Leave(this);
+            if (Wardrobe.IsDoorOpen())
+            {
+                Output.Log(string.Format("Kid {0}: leaves wardrobe.", id));
+                Wardrobe.Leave(this);
+            } else
+            {
+                Output.Log(string.Format("Kid {0}: Can\'t leave wardrobe. It\'s closed.", id));
+            }
         }
     }
 }

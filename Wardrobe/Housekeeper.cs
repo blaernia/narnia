@@ -5,7 +5,8 @@ using System.Text;
 namespace Narnia
 {
     static class Housekeeper
-    { 
+    {
+        private static int timeout = 2;
         public static void HearsKick(Kid who)
         {
             var rand = new Random();
@@ -13,7 +14,7 @@ namespace Narnia
             if (r == 5)
             {
                 Output.Log(string.Format("Housekeeper: heard kick!!!"));
-                who.Timeout(10);
+                who.Timeout(timeout);
             }
         }
     }

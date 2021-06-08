@@ -6,10 +6,10 @@ namespace Narnia
 {
     static class Housekeeper
     {
+        private static Random rand = new Random();
         private static int timeout = 2;
         public static void HearsKick(Kid who)
         {
-            var rand = new Random();
             int r = rand.Next(1, 10);
             if (r == 5)
             {

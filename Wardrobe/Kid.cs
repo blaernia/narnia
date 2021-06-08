@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Narnia
 {
@@ -19,6 +21,12 @@ namespace Narnia
             Output.Log(string.Format("Kid {0}: born.", this.id));
         }
        
+        public void Timeout(int s)
+        {
+            Output.Log(string.Format("Kid {0}: Got a timeout of {1} seconds.", this.id, s));
+            
+            Task.Delay(1000 * s).Wait();
+        }
         public void KickWardrobe()
         {
             Output.Log(string.Format("Kid {0}: kicks wardrobe.", id));

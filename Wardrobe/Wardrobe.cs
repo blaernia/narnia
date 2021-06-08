@@ -18,10 +18,11 @@ namespace Narnia
         {
             return _doorIsOpen;
         }
-        public static void OpenDoor(Kid who)
+        public static bool OpenDoor(Kid who)
         {
             _doorIsOpen = true;
             Output.Log(string.Format("Wardobe: door was openend by {0}.", who.id));
+            return _doorIsOpen;
         }
 
         public static void Enter(Kid who)
@@ -49,14 +50,16 @@ namespace Narnia
             }
         }
 
-        public static void CloseDoor(Kid who)
+        public static bool CloseDoor(Kid who)
         {
             _doorIsOpen = false;
             Output.Log(string.Format("Wardobe: door was closed by {0}.", who.id));
+            return _doorIsOpen;
         }
 
         public static void Kick(Kid who)
         {
+            Housekeeper.HearsKick(who);
             Output.Log(string.Format("Wardobe: was kicked by {0}.", who.id));
         }
     }
